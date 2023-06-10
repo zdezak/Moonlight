@@ -3,6 +3,7 @@
     <style name="Base.Theme.Moonlight" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/sf_pro_display_medium</item>
     </style>
 
     <style name="Theme.Moonlight" parent="Base.Theme.Moonlight" />
