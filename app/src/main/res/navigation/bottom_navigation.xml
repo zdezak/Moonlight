@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    android:label="@string/app_name"
+    app:startDestination="@id/navigation_main">
+
+    <fragment
+        android:id="@+id/navigation_main"
+        android:name="com.example.moonlight.MainFragment"
+        android:label="@string/menu_main"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.moonlight.SearchFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.example.moonlight.CartFragment"
+        android:label="@string/menu_cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.moonlight.AccountFragment"
+        android:label="@string/menu_account"
+        tools:layout="@layout/fragment_account" />
+</navigation>
