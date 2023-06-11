@@ -1,13 +1,15 @@
 package com.example.moonlight.ui.search
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.moonlight.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     companion object {

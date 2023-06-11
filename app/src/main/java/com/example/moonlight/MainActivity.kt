@@ -8,7 +8,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moonlight.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_main, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_account
+                R.id.navigation_main,
+                R.id.navigation_search,
+                R.id.navigation_cart,
+                R.id.navigation_account
             )
         )
 

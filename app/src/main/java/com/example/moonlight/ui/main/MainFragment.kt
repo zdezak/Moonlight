@@ -5,8 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.moonlight.databinding.FragmentMainBinding
+import com.example.moonlight.ui.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
 
@@ -15,10 +23,22 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         val binding: FragmentMainBinding = FragmentMainBinding.inflate(layoutInflater)
+        val viewModel: MainViewModel by viewModels()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.uiState.collect { value ->
+                    when (value) {
+                        is UiState.Loading -> binding.name.text = "Loading"
+                        is UiState.Success -> binding.name.text = "Success"
+                        is UiState.Error -> binding.name.text = "Error"
 
-        val mainViewModel = MainViewModel()
+                    }
+                }
+            }
+        }
 
-        val adapter = null
+
+
         return binding.root
     }
 }
