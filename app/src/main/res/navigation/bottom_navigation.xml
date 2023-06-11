@@ -8,25 +8,25 @@
 
     <fragment
         android:id="@+id/navigation_main"
-        android:name="com.example.moonlight.MainFragment"
+        android:name="com.example.moonlight.ui.main.MainFragment"
         android:label="@string/menu_main"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.moonlight.SearchFragment"
+        android:name="com.example.moonlight.ui.search.SearchFragment"
         android:label="@string/menu_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.moonlight.CartFragment"
+        android:name="com.example.moonlight.ui.cart.CartFragment"
         android:label="@string/menu_cart"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.example.moonlight.AccountFragment"
+        android:name="com.example.moonlight.ui.account.AccountFragment"
         android:label="@string/menu_account"
         tools:layout="@layout/fragment_account" />
 </navigation>

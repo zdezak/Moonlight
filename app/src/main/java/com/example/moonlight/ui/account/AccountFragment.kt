@@ -1,4 +1,4 @@
-package com.example.moonlight
+package com.example.moonlight.ui.account
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,25 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.moonlight.R
 
-class CategoriaFragment : Fragment() {
+class AccountFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CategoriaFragment()
+        fun newInstance() = AccountFragment()
     }
 
-    private lateinit var viewModel: CategoriaViewModel
+    private lateinit var viewModel: AccountViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_categoria, container, false)
+        return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CategoriaViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

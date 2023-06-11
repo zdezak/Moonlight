@@ -1,4 +1,4 @@
-package com.example.moonlight
+package com.example.moonlight.ui.search
 
 import androidx.lifecycle.ViewModel
 

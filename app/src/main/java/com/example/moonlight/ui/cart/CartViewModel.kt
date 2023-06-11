@@ -1,7 +1,7 @@
-package com.example.moonlight
+package com.example.moonlight.ui.cart
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class CartViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
