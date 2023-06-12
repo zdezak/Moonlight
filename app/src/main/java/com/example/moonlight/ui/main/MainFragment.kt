@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moonlight.R
 import com.example.moonlight.databinding.FragmentMainBinding
 import com.example.moonlight.ui.UiState
 import com.example.moonlight.ui.adapter.CategoriesDelegateAdopter
@@ -34,7 +36,11 @@ class MainFragment : Fragment() {
                         is UiState.Loading -> binding.name.text = "Loading"
                         is UiState.Success -> {
                             val adapter = CompositeDelegateAdapter(
-                                CategoriesDelegateAdopter(View.OnClickListener { })
+                                CategoriesDelegateAdopter {
+                                    it.findNavController().navigate(
+                                        R.id.action_navigation_main_to_category_fragment
+                                    )
+                                }
                             )
                             adapter.swapData(value.Categories)
                             binding.recyclerView.layoutManager =
@@ -48,9 +54,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
-
-
         return binding.root
     }
 }
