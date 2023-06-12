@@ -1,7 +1,5 @@
 package com.example.moonlight.ui.dish
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,11 +43,11 @@ class DishFragment : DialogFragment() {
                             binding.description.text = value.dishes[dishIndex].description
                             binding.cost.text = value.dishes[dishIndex].price
                             binding.weight.text = value.dishes[dishIndex].weight
-                            Glide.with(binding.root)
+                            Glide.with(binding.image)
                                 .load(value.dishes[dishIndex].image_url)
                                 .into(binding.image)
                             binding.close.setOnClickListener { dismiss() }
-//                          binding.addToCart.setOnClickListener{}
+                            binding.addToCart.setOnClickListener {}
                         }
 
                         is CategoryUiState.Error -> {
