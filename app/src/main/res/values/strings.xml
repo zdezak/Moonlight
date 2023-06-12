@@ -11,4 +11,10 @@
     <string name="status_loading">Loading</string>
     <string name="status_error">Error</string>
     <string name="image_dish_description">Image Dish</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="close_image_description">Закрыть</string>
+    <string name="favotite_image_description">Избранное</string>
+    <string name="name_dish">Название блюда</string>
+    <string name="cost">Стоимость</string>
+    <string name="wight">Вес</string>
 </resources>
