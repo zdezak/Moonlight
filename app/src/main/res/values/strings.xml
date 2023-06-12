@@ -6,4 +6,5 @@
     <string name="menu_account">Аккаунт</string>
     <string name="menu_categoria">Категория</string>
     <string name="preview_category">Превью категории</string>
+    <string name="in_develop">В разработке</string>
 </resources>
