@@ -7,4 +7,7 @@
     <string name="menu_categoria">Категория</string>
     <string name="preview_category">Превью категории</string>
     <string name="in_develop">В разработке</string>
+    <string name="status_start">Start</string>
+    <string name="status_loading">Loading</string>
+    <string name="status_error">Error</string>
 </resources>

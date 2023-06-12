@@ -1,5 +1,6 @@
 package com.example.moonlight.ui.main
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,8 +34,12 @@ class MainFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.uiState.collect { value ->
                     when (value) {
-                        is UiState.Loading -> binding.name.text = "Loading"
+                        is UiState.Loading -> {
+                            binding.loadingStatus.visibility = View.VISIBLE
+                            binding.loadingStatus.text = getString(R.string.status_loading)
+                        }
                         is UiState.Success -> {
+                            binding.loadingStatus.visibility = View.INVISIBLE
                             val adapter = CompositeDelegateAdapter(
                                 CategoriesDelegateAdopter {
                                     it.findNavController().navigate(
@@ -48,7 +53,10 @@ class MainFragment : Fragment() {
                             binding.recyclerView.adapter = adapter
                         }
 
-                        is UiState.Error -> binding.name.text = "Error"
+                        is UiState.Error -> {
+                            binding.loadingStatus.visibility = View.VISIBLE
+                            binding.loadingStatus.text = getString(R.string.status_error)
+                        }
 
                     }
                 }
