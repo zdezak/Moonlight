@@ -9,8 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moonlight.databinding.FragmentMainBinding
 import com.example.moonlight.ui.UiState
+import com.example.moonlight.ui.adapter.CategoriesDelegateAdopter
+import com.example.moonlight.ui.adapter.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,7 +32,16 @@ class MainFragment : Fragment() {
                 viewModel.uiState.collect { value ->
                     when (value) {
                         is UiState.Loading -> binding.name.text = "Loading"
-                        is UiState.Success -> binding.name.text = "Success"
+                        is UiState.Success -> {
+                            val adapter = CompositeDelegateAdapter(
+                                CategoriesDelegateAdopter(View.OnClickListener { })
+                            )
+                            adapter.swapData(value.Categories)
+                            binding.recyclerView.layoutManager =
+                                LinearLayoutManager(binding.root.context)
+                            binding.recyclerView.adapter = adapter
+                        }
+
                         is UiState.Error -> binding.name.text = "Error"
 
                     }

@@ -5,4 +5,5 @@
     <string name="menu_cart">Корзина</string>
     <string name="menu_account">Аккаунт</string>
     <string name="menu_categoria">Категория</string>
+    <string name="preview_category">Превью категории</string>
 </resources>

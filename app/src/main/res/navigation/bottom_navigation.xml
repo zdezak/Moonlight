@@ -10,7 +10,11 @@
         android:id="@+id/navigation_main"
         android:name="com.example.moonlight.ui.main.MainFragment"
         android:label="@string/menu_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_navigation_main_to_category_fragment"
+            app:destination="@id/category_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_search"
@@ -29,4 +33,9 @@
         android:name="com.example.moonlight.ui.account.AccountFragment"
         android:label="@string/menu_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/category_fragment"
+        android:name="com.example.moonlight.ui.category.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
 </navigation>
