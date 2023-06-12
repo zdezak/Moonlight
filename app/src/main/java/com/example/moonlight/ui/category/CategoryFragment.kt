@@ -14,6 +14,7 @@ import com.example.moonlight.R
 import com.example.moonlight.databinding.FragmentCategoryBinding
 import com.example.moonlight.ui.adapter.CompositeDelegateAdapter
 import com.example.moonlight.ui.adapter.DishesDelegateAdapter
+import com.example.moonlight.ui.dish.DishFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -38,11 +39,15 @@ class CategoryFragment : Fragment() {
                         is CategoryUiState.Success -> {
                             binding.loadingStatus.visibility = View.INVISIBLE
                             val adapter = CompositeDelegateAdapter(
-                                DishesDelegateAdapter()
+                                DishesDelegateAdapter {
+                                    DishFragment().show(
+                                        childFragmentManager, DishFragment.TAG
+                                    )
+                                }
                             )
                             adapter.swapData(value.dishes)
                             binding.recyclerView.layoutManager =
-                                GridLayoutManager(binding.root.context,3,)
+                                GridLayoutManager(binding.root.context, 3)
                             binding.recyclerView.adapter = adapter
                         }
 
