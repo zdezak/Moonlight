@@ -1,4 +1,4 @@
-package com.example.moonlight.data.datasource
+package com.example.moonlight.data.datasource.categories
 
 import com.example.moonlight.data.model.Category
 import com.example.moonlight.data.model.ResultState

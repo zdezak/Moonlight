@@ -5,30 +5,59 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moonlight.R
+import com.example.moonlight.databinding.FragmentCategoryBinding
+import com.example.moonlight.ui.adapter.CompositeDelegateAdapter
+import com.example.moonlight.ui.adapter.DishesDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CategoryFragment()
-    }
-
-    private lateinit var viewModel: CategoryViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_category, container, false)
-    }
+    ): View {
+        val binding = FragmentCategoryBinding.inflate(layoutInflater)
+        val viewModel: CategoryViewModel by viewModels()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.categoryUiState.collect { value ->
+                    when (value) {
+                        is CategoryUiState.Loading -> {
+                            binding.loadingStatus.visibility = View.VISIBLE
+                            binding.loadingStatus.text = getString(R.string.status_loading)
+                        }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        // TODO: Use the ViewModel
+                        is CategoryUiState.Success -> {
+                            binding.loadingStatus.visibility = View.INVISIBLE
+                            val adapter = CompositeDelegateAdapter(
+                                DishesDelegateAdapter()
+                            )
+                            adapter.swapData(value.dishes)
+                            binding.recyclerView.layoutManager =
+                                GridLayoutManager(binding.root.context,3,)
+                            binding.recyclerView.adapter = adapter
+                        }
+
+                        is CategoryUiState.Error -> {
+                            binding.loadingStatus.visibility = View.VISIBLE
+                            binding.loadingStatus.text = getString(R.string.status_error)
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+        return binding.root
     }
 
 }

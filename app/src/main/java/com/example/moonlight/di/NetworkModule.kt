@@ -1,7 +1,7 @@
 package com.example.moonlight.di
 
 import android.content.Context
-import com.example.moonlight.data.api.CategoryApiClient
+import com.example.moonlight.data.api.ApiClient
 import com.example.moonlight.di.annotation.BaseUrl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -60,7 +60,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiClient(retrofit: Retrofit): CategoryApiClient {
-        return retrofit.create(CategoryApiClient::class.java)
+    fun provideApiClient(retrofit: Retrofit): ApiClient {
+        return retrofit.create(ApiClient::class.java)
     }
 }

@@ -1,6 +1,5 @@
 package com.example.moonlight.ui.main
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moonlight.R
 import com.example.moonlight.databinding.FragmentMainBinding
-import com.example.moonlight.ui.UiState
-import com.example.moonlight.ui.adapter.CategoriesDelegateAdopter
+import com.example.moonlight.ui.adapter.CategoriesDelegateAdapter
 import com.example.moonlight.ui.adapter.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -32,16 +30,16 @@ class MainFragment : Fragment() {
         val viewModel: MainViewModel by viewModels()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.uiState.collect { value ->
+                viewModel.mainUiState.collect { value ->
                     when (value) {
-                        is UiState.Loading -> {
+                        is MainUiState.Loading -> {
                             binding.loadingStatus.visibility = View.VISIBLE
                             binding.loadingStatus.text = getString(R.string.status_loading)
                         }
-                        is UiState.Success -> {
+                        is MainUiState.Success -> {
                             binding.loadingStatus.visibility = View.INVISIBLE
                             val adapter = CompositeDelegateAdapter(
-                                CategoriesDelegateAdopter {
+                                CategoriesDelegateAdapter {
                                     it.findNavController().navigate(
                                         R.id.action_navigation_main_to_category_fragment
                                     )
@@ -53,7 +51,7 @@ class MainFragment : Fragment() {
                             binding.recyclerView.adapter = adapter
                         }
 
-                        is UiState.Error -> {
+                        is MainUiState.Error -> {
                             binding.loadingStatus.visibility = View.VISIBLE
                             binding.loadingStatus.text = getString(R.string.status_error)
                         }
