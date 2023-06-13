@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:theme="@style/Theme.Moonlight"
     tools:context=".ui.dish.DishFragment">
 
     <ImageView
@@ -12,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/favotite_image_description"
         app:layout_constraintEnd_toStartOf="@+id/close"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_favorite"
-        android:contentDescription="@string/favotite_image_description" />
+        app:srcCompat="@drawable/icon_favorite" />
 
     <ImageView
         android:id="@+id/close"
@@ -23,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/close_image_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_close"
-        android:contentDescription="@string/close_image_description" />
+        app:srcCompat="@drawable/icon_close" />
 
     <ImageView
         android:id="@+id/image"
@@ -93,7 +94,9 @@
         android:id="@+id/add_to_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
         android:text="@string/add_to_cart"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
