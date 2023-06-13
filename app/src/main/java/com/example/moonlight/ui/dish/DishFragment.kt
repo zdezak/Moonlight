@@ -53,6 +53,7 @@ class DishFragment : DialogFragment() {
                                 .into(binding.image)
                             binding.close.setOnClickListener { dismiss() }
                             binding.addToCart.setOnClickListener {
+                                viewModel.setInCart(value.dishes[dishIndex])
                                 Toast.makeText(context, getString(R.string.add_to_cart_done), Toast.LENGTH_SHORT)
                                     .show()
                             }

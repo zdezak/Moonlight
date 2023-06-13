@@ -1,10 +1,11 @@
 package com.example.moonlight.ui.dish
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moonlight.data.model.Dish
 import com.example.moonlight.data.model.ResultState
 import com.example.moonlight.domain.usecase.GetDishes
+import com.example.moonlight.domain.usecase.SetInCart
 import com.example.moonlight.ui.category.CategoryUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DishViewModel @Inject constructor(
     private val getDishes: GetDishes,
+    private val setInCart: SetInCart,
 ) : ViewModel() {
     private val _categoryUiState = MutableStateFlow<CategoryUiState>(CategoryUiState.Loading)
     val categoryUiState: StateFlow<CategoryUiState> = _categoryUiState
@@ -48,11 +50,19 @@ class DishViewModel @Inject constructor(
             _categoryUiState.value = (newCategoryUiState)
         }
     }
-    fun setDishIndex(id:String){
-        dishId = id.toInt()-1
+
+    fun setDishIndex(id: String) {
+        dishId = id.toInt() - 1
     }
+
     fun getDishIndex(): Int {
         return dishId
     }
 
+    fun setInCart(dish: Dish) {
+        loadingJob?.cancel()
+        loadingJob = viewModelScope.launch {
+            setInCart.invoke(dish = dish)
+        }
+    }
 }
