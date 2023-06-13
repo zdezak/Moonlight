@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -27,18 +27,23 @@ class DishFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        viewModel.setDishIndex((requireArguments().getString("id", "1")))
+
         val binding = FragmentDishBinding.inflate(layoutInflater)
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-
                 viewModel.categoryUiState.collect { value ->
                     val dishIndex = viewModel.getDishIndex()
                     when (value) {
                         is CategoryUiState.Loading -> {
+                            binding.addToCart.isClickable = false
                             binding.name.text = getString(R.string.status_loading)
                         }
 
                         is CategoryUiState.Success -> {
+                            binding.addToCart.isClickable = true
                             binding.name.text = value.dishes[dishIndex].name
                             binding.description.text = value.dishes[dishIndex].description
                             binding.cost.text = value.dishes[dishIndex].price
@@ -47,10 +52,14 @@ class DishFragment : DialogFragment() {
                                 .load(value.dishes[dishIndex].image_url)
                                 .into(binding.image)
                             binding.close.setOnClickListener { dismiss() }
-                            binding.addToCart.setOnClickListener {}
+                            binding.addToCart.setOnClickListener {
+                                Toast.makeText(context, getString(R.string.add_to_cart_done), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
 
                         is CategoryUiState.Error -> {
+                            binding.addToCart.isClickable = false
                             binding.name.text = getString(R.string.status_error)
                         }
 
@@ -64,11 +73,6 @@ class DishFragment : DialogFragment() {
 
     companion object {
         const val TAG = "PurchaseConfirmationDialog"
-    }
-
-    override fun show(manager: FragmentManager, tag: String?) {
-        //viewModel.setDishIndex(tag!!)
-        super.show(manager, tag)
     }
 
 }

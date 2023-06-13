@@ -17,4 +17,5 @@
     <string name="name_dish">Название блюда</string>
     <string name="cost">Стоимость</string>
     <string name="wight">Вес</string>
+    <string name="add_to_cart_done">Добавлено</string>
 </resources>

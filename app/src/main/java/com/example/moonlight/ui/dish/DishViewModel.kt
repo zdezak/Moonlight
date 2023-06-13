@@ -1,5 +1,6 @@
 package com.example.moonlight.ui.dish
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moonlight.data.model.ResultState
@@ -20,7 +21,7 @@ class DishViewModel @Inject constructor(
     private val _categoryUiState = MutableStateFlow<CategoryUiState>(CategoryUiState.Loading)
     val categoryUiState: StateFlow<CategoryUiState> = _categoryUiState
 
-    private var dishId = 0
+    private var dishId = -1
     private var loadingJob: Job? = null
 
     init {
@@ -48,7 +49,7 @@ class DishViewModel @Inject constructor(
         }
     }
     fun setDishIndex(id:String){
-        dishId = id.toInt()
+        dishId = id.toInt()-1
     }
     fun getDishIndex(): Int {
         return dishId
