@@ -21,4 +21,7 @@
     <string name="text_buy">Оплатить</string>
     <string name="buy_is_done">Оплачено</string>
     <string name="add_in_cart_new_dash">Добавьте блюда в корзину</string>
+    <string name="count_dish">1</string>
+    <string name="button_plus">button plus</string>
+    <string name="button_minus">button minus</string>
 </resources>

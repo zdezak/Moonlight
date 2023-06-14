@@ -47,7 +47,7 @@ class CartFragment : Fragment() {
                             binding.recyclerView.layoutManager =
                                 LinearLayoutManager(binding.root.context)
                             binding.recyclerView.adapter = adapter
-
+                            binding.buttonBuy.text = getString(R.string.text_buy)+" ${viewModel.sum} ₽."
                             binding.buttonBuy.setOnClickListener {
                                 if (viewModel.sum != 0) {
                                     Toast.makeText(

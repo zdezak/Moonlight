@@ -1,5 +1,6 @@
 package com.example.moonlight.ui.cart
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moonlight.data.model.DishLocal
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    private val getDishesInCart: GetDishesInCart,
+    private val getDishesInCart: GetDishesInCart
 ) : ViewModel() {
     private val _cartUiState = MutableStateFlow<CartUiState>(CartUiState.Loading)
     val cartUiState: StateFlow<CartUiState> = _cartUiState
@@ -34,8 +35,8 @@ class CartViewModel @Inject constructor(
             val newCartUiState: CartUiState = when (val dishesResult = getDishesInCart()) {
                 is ResultState.Success -> {
                     summa(dishesResult.data)
+                    Log.i("carViewModel. sum value",sum.toString())
                     CartUiState.Success(dishesResult.data)
-
                 }
 
                 is ResultState.Error -> {
@@ -50,16 +51,17 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    private fun summa(dishes: List<DishLocal>): Int {
-        var summa: Int = 0
+    private fun summa(dishes: List<DishLocal>) {
         dishes.let { dishesList ->
             for (dish in dishesList) {
-                summa = dish.count * dish.price.toInt()
+                sum += dish.count * dish.price.toInt()
             }
         }
-        return summa
     }
 
+    fun buyDishes(){
+
+    }
     fun plusDishes(id: String) {
         TODO("Not yet implemented")
     }

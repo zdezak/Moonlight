@@ -13,10 +13,10 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_dish_description" />
 
     <TextView
         android:id="@+id/name_dish"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/name_dish"
         app:layout_constraintStart_toEndOf="@+id/image_dish"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/cost"
         app:layout_constraintStart_toEndOf="@+id/image_dish"
         app:layout_constraintTop_toBottomOf="@+id/name_dish" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/wight"
         app:layout_constraintStart_toEndOf="@+id/price"
         app:layout_constraintTop_toBottomOf="@+id/name_dish" />
 
@@ -64,15 +64,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star_big_on"
-            app:srcCompat="@drawable/frame_610" />
+            app:srcCompat="@drawable/frame_610"
+            android:contentDescription="@string/button_minus" />
 
         <TextView
             android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
+            android:text="@string/count_dish"
             android:textAlignment="center" />
 
         <ImageView
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star"
-            app:srcCompat="@drawable/plus" />
+            app:srcCompat="@drawable/plus"
+            android:contentDescription="@string/button_plus" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

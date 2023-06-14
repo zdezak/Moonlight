@@ -6,8 +6,8 @@ import com.example.moonlight.data.model.DishLocal
 import com.example.moonlight.databinding.ItemCartBinding
 
 class CartDelegateAdapter(
-    private val minusClickListener: (id:String) -> Unit,
-    private val plusClickListener: (id:String) -> Unit,
+    private val minusClickListener: (id: String) -> Unit,
+    private val plusClickListener: (id: String) -> Unit
 ) :
     ViewBindingDelegateAdapter<DishLocal, ItemCartBinding>(ItemCartBinding::inflate) {
     override fun ItemCartBinding.onBind(item: DishLocal) {

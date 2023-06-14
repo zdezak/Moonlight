@@ -9,6 +9,7 @@ import com.example.moonlight.domain.usecase.SetInCart
 import com.example.moonlight.ui.category.CategoryUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -61,7 +62,7 @@ class DishViewModel @Inject constructor(
 
     fun setInCart(dish: Dish) {
         loadingJob?.cancel()
-        loadingJob = viewModelScope.launch {
+        loadingJob = viewModelScope.launch(Dispatchers.IO) {
             setInCart.invoke(dish = dish)
         }
     }

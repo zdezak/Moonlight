@@ -1,12 +1,10 @@
 package com.example.moonlight.data.datasource.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.moonlight.data.model.Dish
 import com.example.moonlight.data.model.DishLocal
 
 @Dao
@@ -16,6 +14,12 @@ interface DishDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(dishLocal: DishLocal)
+
+    @Query("SELECT * FROM dishLocal where id = :id")
+    fun getDishById(id: String): DishLocal
+
+    @Query("SELECT EXISTS(SELECT * FROM dishLocal where id = :id)")
+    fun isDishInCart(id: String): Boolean
 
     @Delete
     suspend fun delete(dishLocal: DishLocal)

@@ -31,7 +31,6 @@ class DishFragment : DialogFragment() {
         viewModel.setDishIndex((requireArguments().getString("id", "1")))
 
         val binding = FragmentDishBinding.inflate(layoutInflater)
-
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.categoryUiState.collect { value ->
@@ -46,15 +45,19 @@ class DishFragment : DialogFragment() {
                             binding.addToCart.isClickable = true
                             binding.name.text = value.dishes[dishIndex].name
                             binding.description.text = value.dishes[dishIndex].description
-                            binding.cost.text = value.dishes[dishIndex].price
-                            binding.weight.text = value.dishes[dishIndex].weight
+                            binding.cost.text = value.dishes[dishIndex].price + "₽."
+                            binding.weight.text = value.dishes[dishIndex].weight + "г"
                             Glide.with(binding.image)
                                 .load(value.dishes[dishIndex].image_url)
                                 .into(binding.image)
                             binding.close.setOnClickListener { dismiss() }
                             binding.addToCart.setOnClickListener {
                                 viewModel.setInCart(value.dishes[dishIndex])
-                                Toast.makeText(context, getString(R.string.add_to_cart_done), Toast.LENGTH_SHORT)
+                                Toast.makeText(
+                                    context,
+                                    getString(R.string.add_to_cart_done),
+                                    Toast.LENGTH_SHORT
+                                )
                                     .show()
                             }
                         }
